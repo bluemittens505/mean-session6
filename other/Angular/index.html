@@ -1,4 +1,4 @@
-<html ng-app="myApp">
+<html ng-app="portfolioApp">
 <head>
 	<link rel="stylesheet" type="text/css" href="bootstrap-sass-3.3.5/assets/css/_bootstrap.css">
 	<script src="https://code.angularjs.org/1.2.3/angular.js"></script>
@@ -31,36 +31,51 @@
 		<p>Filter list: <input ng-model="searchFor" size="30"/></p>
 
 		<div class="col-xs-4">
-			<div class="panel panel-default panel-primary">
-				<div class="panel-heading"> 
-					<input type="text" placeholder="title" size="20" ng-model="adding_portfolio.title" />
-					<span class="portfolio-date">
-						<input type="text" placeholder="yyyy/mm/dd" size="10" ng-model="adding_portfolio.date" />
-					</span>
-				</div>
-				<div class="panel-body">
-					<textarea placeholder="description" rows="4" style="width:100%;" ng-model="adding_portfolio.description"></textarea>
-					<input type="text" placeholder="short name" ng-model="adding_portfolio.name" />
+			<div class="panel panel-default">
 
-					<button ng-click="addPortfolio(adding_portfolio)" type="button" class="btn btn-success">Add Portfolio</button>
+				<div class="alert alert-danger" ng-show="add_portfolio_error">
+					{{ add_portfolio_error }}
 				</div>
+
+				<form name="add_portfolio_form" action="" novalidate>
+					<div class="panel-heading"> 
+
+						<!-- <p>Is this form valid? {{ add_portfolio_form.date.$valid }}</p>
+						<p>Is this form error'd? {{ add_portfolio_form.date.$error }}</p> -->
+
+						<h3>Add New Portfolio</h3>
+						<input type="text" placeholder="title" size="20" ng-model="adding_portfolio.title" />
+
+						<span class="portfolio-date">
+							<input type="text" placeholder="yyyy/mm/dd" size="10" ng-model="adding_portfolio.date" ng-required="true"
+							minlength="10" name="date" />
+						</span>
+
+					</div>
+					<div class="panel-body">
+						<textarea placeholder="description" rows="4" style="width:100%;" ng-model="adding_portfolio.description"></textarea>
+						<input type="text" placeholder="short name" ng-model="adding_portfolio.name" />
+
+						<button ng-click="addPortfolio(adding_portfolio)" type="button" class="btn btn-success">Add Portfolio</button>
+					</div>
+				</form>
 			</div>
 		</div>
-	
-	<div class="col-xs-4" ng-repeat="portfolio in portfolios | filter:searchFor | orderBy:'date' " >
-		<div class="panel panel-default panel-primary">
-			<div class="panel-heading"> 
-				{{ portfolio.name }} <span class="portfolio-date">{{ portfolio.date }}</span>
-			</div>
-			<div class="panel-body">
-				<p>{{ portfolio.description }}</p>
-				<img class="img-responsive" ng-src="images/{{ portfolio.imageurl }}" />
+
+		<div class="col-xs-4" ng-repeat="portfolio in portfolios | filter:searchFor | orderBy:'date' " >
+			<div class="panel panel-default panel-primary">
+				<div class="panel-heading"> 
+					{{ portfolio.name }} <span class="portfolio-date">{{ portfolio.date }}</span>
+				</div>
+				<div class="panel-body">
+					<p>{{ portfolio.description }}</p>
+					<img class="img-responsive" ng-src="images/{{ portfolio.imageurl }}" />
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<p> There are {{ portfolios.length }} portfolios so far!</p>
+	<p> There are {{ portfolios.length }} portfolios so far!</p>
 
 </body>
 </html>

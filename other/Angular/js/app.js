@@ -1,5 +1,5 @@
-var myApp = angular.module('myApp', []);
-myApp.controller('PortfolioListController', function( $scope ) {
+var portfolioApp = angular.module('portfolioApp', []);
+portfolioApp.controller('PortfolioListController', function( $scope ) {
 
 	$scope.portfolios = [
 	{name: 'vessel1309', title: 'Call of Booty', date: '2013-09-01', description: 'Arrrgh mateys! This be the finest vessel sailing these seas that yer eyes ever laid sight on. Arrrgh.', imageurl: 'drunkenPirate_thumb3.png' },
@@ -8,7 +8,17 @@ myApp.controller('PortfolioListController', function( $scope ) {
 	]
 
 	$scope.addPortfolio = function (new_portfolio) {
-		$scope.portfolios.push(new_portfolio);
+		$scope.add_portfolio_error = '';
+		if ( !new_portfolio.date || new_portfolio.date.length < 10 ) {
+			$scope.add_portfolio_error = "Please provide a date in yyyy/mm/dd format.";
+		} else if ( !new_portfolio.title) {
+			$scope.add_portfolio_error = "Please provide a title.";
+		} else {
+			$scope.portfolios.push(new_portfolio);
+			$scope.adding_portfolio = {};
+		}
 	};
+
+
 	
 });
