@@ -1,5 +1,18 @@
 @import url("http://fonts.googleapis.com/css?family=Lato:300,400,700");
 @import url("normalize.css");
+.controlbar {
+  padding: .25rem;
+  width: 100%;
+  background: #000;
+  min-height: 2rem; }
+  .controlbar .showBreakpoint {
+    background: #333;
+    color: #fff;
+    border: none;
+    width: 240px;
+    float: right;
+    padding: 5px; }
+
 .group:after {
   content: "";
   display: table;
@@ -19,20 +32,22 @@ body {
   color: #364347;
   font-size: 16px;
   font-family: "Lato", sans-serif;
-  line-height: 1.4;
-  background: #fad46b; }
+  line-height: 1.4; }
+
+.wrap {
+  background: #e1eef3; }
 
 .sidebar {
   width: 100%;
   height: 100%;
   padding-bottom: 14%;
-  background: url(../images/hero.png) bottom left no-repeat;
+  background: #fad46b url(../images/hero.png) bottom left no-repeat;
   background-size: 20%; }
   @media screen and (min-width: 760px) {
     .sidebar {
       float: left;
       width: 20%;
-      background: url(../images/hero.png) bottom center no-repeat;
+      background: #fad46b url(../images/hero.png) bottom center no-repeat;
       background-size: 80%; } }
   .sidebar .my-info {
     text-align: center;
@@ -47,7 +62,8 @@ body {
       font-size: 100%; }
 
 .searchbar {
-  text-align: center; }
+  text-align: center;
+  margin: 10px 0; }
 
 .social {
   width: 120px;
@@ -164,24 +180,87 @@ ul {
 
 .content {
   width: 100%;
-  min-height: 100%;
-  background: #FFF; }
+  min-height: 100%; }
   @media screen and (min-width: 760px) {
     .content {
       float: left;
       width: 80%; } }
+  .content .portfolio-form fieldset {
+    border-radius: 2px; }
+    .content .portfolio-form fieldset h2 {
+      background-color: #009dcd;
+      border-bottom: 1px solid #d4d4d4;
+      border-top: 1px solid #d4d4d4;
+      border-radius: 5px;
+      box-shadow: 3px 3px 3px #ccc;
+      color: #FFF;
+      font-size: 1.1em;
+      margin: 10px 0;
+      padding: 2.5px 10px;
+      text-shadow: #9FBEB9 1px 1px 1px;
+      text-transform: uppercase; }
+    .content .portfolio-form fieldset .fields {
+      background-color: #b2c6cd;
+      padding: 10px; }
+      .content .portfolio-form fieldset .fields .row {
+        clear: left; }
+        .content .portfolio-form fieldset .fields .row label {
+          cursor: pointer;
+          float: left;
+          width: 25%;
+          padding: 2.5px 5px;
+          text-align: right; }
+        .content .portfolio-form fieldset .fields .row input[type=text],
+        .content .portfolio-form fieldset .fields .row input[type=date] {
+          font-size: inherit;
+          padding: 0 10px;
+          width: 200px; }
+        .content .portfolio-form fieldset .fields .row input[type=date] {
+          margin-bottom: 5px; }
+        .content .portfolio-form fieldset .fields .row textarea {
+          font: inherit;
+          width: 250px; }
+        .content .portfolio-form fieldset .fields .row input[type=text],
+        .content .portfolio-form fieldset .fields .row input[type=date],
+        .content .portfolio-form fieldset .fields .row textarea {
+          transition-property: all;
+          transition-duration: 0.5s;
+          transition-timing-function: ease-in-out; }
+        .content .portfolio-form fieldset .fields .row input[type=text].ng-valid,
+        .content .portfolio-form fieldset .fields .row input[type=date].ng-valid,
+        .content .portfolio-form fieldset .fields .row textarea.ng-valid {
+          background: #4ae74d; }
+        .content .portfolio-form fieldset .fields .row input[type=text].ng-invalid,
+        .content .portfolio-form fieldset .fields .row input[type=date].ng-invalid,
+        .content .portfolio-form fieldset .fields .row textarea.ng-invalid {
+          background: #f84545; }
+        .content .portfolio-form fieldset .fields .row input[type=text]:focus,
+        .content .portfolio-form fieldset .fields .row input[type=date]:focus,
+        .content .portfolio-form fieldset .fields .row textarea:focus {
+          outline: none;
+          transform: scale(1.05); }
+        .content .portfolio-form fieldset .fields .row .required {
+          color: #f84545; }
+        .content .portfolio-form fieldset .fields .row .note {
+          padding-left: 5px; }
+        .content .portfolio-form fieldset .fields .row input[type=submit] {
+          background-color: #28948c;
+          border: none;
+          border-radius: 4px;
+          box-shadow: 2px 2px 2px #333;
+          margin-top: 10px;
+          padding: 5px;
+          text-shadow: 1px 1px 0px #777;
+          vertical-align: middle;
+          font-size: inherit;
+          color: #000; }
   .content .portfolio-item {
-    background: #e1eef3; }
-    .content .portfolio-item:before {
-      content: "";
-      position: absolute;
-      width: 3px;
-      background: #a3bbc3;
-      top: 0px;
-      left: 17px;
-      bottom: 0px; }
-    .content .portfolio-item.first:before {
-      top: 30px; }
+    border: 1px solid #dedede;
+    margin: 10px; }
+    @media screen and (min-width: 760px) {
+      .content .portfolio-item {
+        float: left;
+        width: 30%; } }
     .content .portfolio-item .portfolio-info {
       min-height: 100%;
       color: #5e5e5e;
@@ -196,21 +275,13 @@ ul {
           width: 80%; } }
       .content .portfolio-item .portfolio-info .date {
         font-size: 100%;
-        color: #364347; }
-      .content .portfolio-item .portfolio-info .title {
-        font-size: 110%;
         color: #364347;
         margin-bottom: 10px; }
-        .content .portfolio-item .portfolio-info .title:before {
-          content: "";
-          position: absolute;
-          width: 11px;
-          height: 11px;
-          border-radius: 50%;
-          border: 2px solid #f7f7f7;
-          background: #f84545;
-          left: -29px;
-          top: 3px; }
+      .content .portfolio-item .portfolio-info .title {
+        font-size: 110%;
+        font-weight: bold;
+        color: #364347;
+        margin-bottom: 10px; }
     .content .portfolio-item .portfolio-image {
       padding: 20px;
       background: #FFF;
@@ -227,3 +298,42 @@ ul {
       .content .portfolio-item .portfolio-image div.loading img {
         width: auto;
         height: auto; }
+
+div.loading {
+  color: #c4c4c4;
+  position: absolute;
+  width: 100px;
+  bottom: 15px;
+  left: 50%;
+  margin-left: -50px; }
+  div.loading img {
+    vertical-align: middle; }
+    div.loading img.rotate {
+      -webkit-animation-name: rotate;
+      -ms-animation-name: rotate;
+      animation-name: rotate;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-iteration-count: infinite;
+      -ms-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -ms-animation-timing-function: linear;
+      animation-timing-function: linear; }
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transform-origin: center center;
+    transform-origin: center center; } }
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transform-origin: center center;
+    -ms-transform-origin: center center;
+    transform-origin: center center; } }
+
+/*# sourceMappingURL=styles.css.map */

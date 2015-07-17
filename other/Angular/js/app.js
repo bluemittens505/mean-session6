@@ -8,17 +8,22 @@ portfolioApp.controller('PortfolioListController', function( $scope ) {
 	]
 
 	$scope.addPortfolio = function (new_portfolio) {
+		// if new_portfolio is not defined
+		if (typeof(new_portfolio) == 'undefined') {
+			// then add an error message to $scope and exit
+			$scope.add_portfolio_error = "The form is not properly filled out";
+			return false;
+		};
+
 		$scope.add_portfolio_error = '';
-		if ( !new_portfolio.date || new_portfolio.date.length < 10 ) {
-			$scope.add_portfolio_error = "Please provide a date in yyyy/mm/dd format.";
-		} else if ( !new_portfolio.title) {
+		if ( !new_portfolio.title) {
 			$scope.add_portfolio_error = "Please provide a title.";
+		} else if (!new_portfolio.date || new_portfolio.date.length < 10) {
+			$scope.add_portfolio_error = "Please provide a date in yyyy/mm/dd format.";
 		} else {
 			$scope.portfolios.push(new_portfolio);
 			$scope.adding_portfolio = {};
 		}
 	};
 
-
-	
 });

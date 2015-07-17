@@ -11,23 +11,47 @@ $lightgray: #a1a1a1;
 $verylightgray: #b2c6cd;
 $landlubber: #28948c;
 $overboard: #009dcd;
- 
+$sleet: #d4d4d4;
+$castlerock: #ccc;
+$graphite: #333;
+$dove: #777;
+$green: #4ae74d;
+
 $padding: 10px;
 $margin: 10px;
 $main-width: 1000px;
- 
+
 $font-size: 16px;
 $font-family: 'Lato', sans-serif;
 $line-height: 1.4;
- 
+
 $break-four: 1050px;
 $break-three: 760px;
 $break-two: 520px;
 $break-one: 360px;
- 
+
 @import url('http://fonts.googleapis.com/css?family=Lato:300,400,700');
 @import url('normalize.css');
- 
+
+
+
+.controlbar {
+    padding:.25rem;
+    width:100%;
+    background: #000;
+    min-height: 2rem;
+
+    .showBreakpoint { 
+        background: #333; 
+        color: #fff; 
+        border: none;
+        width: 240px;
+        float: right;
+        padding: 5px;
+    }
+}
+
+
 //clearfix - see http://nicolasgallagher.com/micro-clearfix-hack/
 .group:after {
   content: "";
@@ -42,30 +66,33 @@ $break-one: 360px;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
 }
- 
+
 html, body, .wrap {
     min-height: 100%;
 }
- 
+
 body {
     color: $theblackflag;
     font-size: $font-size;
     font-family: $font-family;
     line-height: $line-height;
-    background: $banana;
+}
+
+.wrap {
+    background: $babyblue;
 }
 
 .sidebar {
     width: 100%;
     height: 100%;
     padding-bottom:14%;
-    background: url(../images/hero.png) bottom left no-repeat;
+    background: $banana url(../images/hero.png) bottom left no-repeat;
     background-size: 20%;
     
     @media screen and (min-width: $break-three) {
         float: left;
         width: 20%;
-        background: url(../images/hero.png) bottom center no-repeat;
+        background: $banana url(../images/hero.png) bottom center no-repeat;
         background-size: 80%;
     }
     
@@ -93,10 +120,13 @@ body {
     }
     
 }
+
 // searchbar
 .searchbar {
     text-align: center;
+    margin: $margin 0;
 }
+
 .social {
     width: 120px;
     margin: 0 auto;
@@ -149,8 +179,8 @@ body {
         
     }
 }
-// menu lists
 
+// menu lists
 ul {
     list-style: none;
     padding: 0;
@@ -196,6 +226,7 @@ ul {
         }
     }
 }
+
 // left side menus
 .menus {
     text-align: center;
@@ -269,30 +300,120 @@ ul {
 .content {
     width: 100%;
     min-height: 100%;
-    background: $white;
 
     @media screen and (min-width: $break-three) {
         float: left;
         width: 80%;
     }
 
-    .portfolio-item {
-        background: $babyblue;
+    .portfolio-form {
+        fieldset {
+            border-radius: 2px;
 
-        &:before {
-            content: "";
-            position: absolute;
-            width: 3px;
-            background: darken($verylightgray, 5%);
-            top: 0px;
-            left: 17px;
-            bottom: 0px;
-        }
-
-        &.first {
-            &:before {
-                top: 30px;
+            h2 {
+                background-color: $overboard;
+                border-bottom: 1px solid $sleet;
+                border-top: 1px solid $sleet;
+                border-radius: 5px;
+                box-shadow: 3px 3px 3px $castlerock;
+                color: $white;
+                font-size: 1.1em;
+                margin: $margin 0;
+                padding: $padding/4 $padding;
+                text-shadow: #9FBEB9 1px 1px 1px;
+                text-transform: uppercase;
             }
+
+            .fields {
+                background-color: $verylightgray;
+                padding: $padding;
+
+                .row {
+                    clear: left;
+
+                    label {
+                        cursor: pointer;
+                        float: left;
+                        width: 25%;
+                        padding: $padding/4 $padding/2;
+                        text-align: right;
+                    }
+
+                    input[type=text],
+                    input[type=date] {
+                        font-size: inherit;
+                        padding: 0 $padding;
+                        width: 200px;
+                    }
+
+                    input[type=date] {
+                        margin-bottom: $margin/2;
+                    }
+
+                    textarea {
+                        font: inherit;
+                        width: 250px;
+                    }
+
+                    input[type=text],
+                    input[type=date],
+                    textarea {
+                        transition-property: all; 
+                        transition-duration: 0.5s; 
+                        transition-timing-function: ease-in-out; 
+                    }
+
+                    input[type=text].ng-valid,
+                    input[type=date].ng-valid,
+                    textarea.ng-valid {
+                        background: $green;
+                    }
+
+                    input[type=text].ng-invalid,
+                    input[type=date].ng-invalid,
+                    textarea.ng-invalid {
+                        background: $strawberry;
+                    }
+
+                    input[type=text]:focus,
+                    input[type=date]:focus,
+                    textarea:focus {
+                        outline: none;
+                        transform: scale(1.05);
+                    }
+
+                    .required {
+                        color: $strawberry;
+                    }
+
+                    .note {
+                        padding-left: $padding/2;
+                    }
+
+                    input[type=submit] {
+                        background-color: $landlubber;
+                        border: none;
+                        border-radius: 4px;
+                        box-shadow: 2px 2px 2px $graphite;
+                        margin-top: $margin;
+                        padding: $padding/2;
+                        text-shadow: 1px 1px 0px $dove;
+                        vertical-align: middle;
+                        font-size: inherit;
+                        color: $black;
+                    }
+                }
+            }
+        }
+    }
+
+    .portfolio-item {
+        border: 1px solid darken($gray, 10%);
+        margin: $margin;
+
+        @media screen and (min-width: $break-three) {
+            float: left;
+            width: 30%;
         }
 
         .portfolio-info {
@@ -312,56 +433,94 @@ ul {
             .date {
                 font-size: 100%;
                 color: $theblackflag;
-                // margin-bottom: $margin;
+                margin-bottom: $margin;
             }
 
             .title {
                 font-size: 110%;
+                font-weight: bold;
                 color: $theblackflag;
                 margin-bottom: $margin;
-
-                &:before {
-                    content: "";
-                    position: absolute;
-                    width: 11px;
-                    height: 11px;
-                    border-radius: 50%;
-                    border: 2px solid $gray;
-                    background: $strawberry;
-                    left: -29px;
-                    top: 3px;
-                }
             }
 
         }
-    // inside content styles at end
-    .portfolio-image {
-        padding: $padding*2;
-        background: $white;
-        border-left: 1px solid darken($gray, 10%);
-        text-align: center;
+        // inside content styles at end
+        .portfolio-image {
+            padding: $padding*2;
+            background: $white;
+            border-left: 1px solid darken($gray, 10%);
+            text-align: center;
 
-        @media screen and (min-width: $break-three) {
-            float: left;
-            width: 70%;
-        }
+            @media screen and (min-width: $break-three) {
+                float: left;
+                width: 70%;
+            }
 
-        img {
-            width: 100%;
-            max-width: 610px;
-            height: auto;
-        }
-
-        div.loading {
             img {
-                width: auto;
+                width: 100%;
+                max-width: 610px;
                 height: auto;
+            }
+
+            div.loading {
+                img {
+                    width: auto;
+                    height: auto;
+                }
             }
         }
     }
 }
-    }
 
+
+// ampersand http://www.joeloliveira.com/2011/06/28/the-ampersand-a-killer-sass-feature/
+div.loading {
+    color: darken($gray, 20%);
+    position: absolute;
+    width: 100px;
+    bottom: 15px;
+    left: 50%;
+    margin-left: -50px;
+
+    img {
+        vertical-align: middle;
+
+        &.rotate {
+            -webkit-animation-name: rotate;
+            -ms-animation-name: rotate;
+            animation-name: rotate;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-iteration-count: infinite;
+            -ms-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            -ms-animation-timing-function: linear;
+            animation-timing-function: linear;
+        }
+    }
+    // next partial here
+}
+
+@-webkit-keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+    }
+}
+
+@keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+        -webkit-transform-origin: center center;
+        -ms-transform-origin: center center;
+        transform-origin: center center;
+    }
+}
 
 
 
